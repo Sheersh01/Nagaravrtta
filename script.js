@@ -74,12 +74,16 @@ slides();
 function textanim(){
 
     var clutter="";
-    document.querySelector(".textpara")
-    .textContent.split("")
-    .forEach(function(e){
-        if(e=== " ") clutter+=`<span>&nbsp;</span>`
-        clutter+=`<span>${e}</span>`
-    })
+    var text = document.querySelector(".textpara").textContent.trim().replace(/\s+/g, ' ');
+    
+    text.split("").forEach(function(e){
+        if(e === " ") {
+            clutter += ` `;
+        } else {
+            clutter += `<span>${e}</span>`;
+        }
+    });
+    
     document.querySelector(".textpara").innerHTML = clutter;
     
     gsap.set(".textpara span",{opacity:0.1})
